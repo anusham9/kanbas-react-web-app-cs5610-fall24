@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Kanbas from './Kanbas';
 import Labs from './Labs';
-import { HashRouter, Link, Route, Routes } from 'react-router-dom';
+import { HashRouter, Link, Navigate, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
       <HashRouter>
         <div>
           <Routes>
+            <Route path="/" element={<Navigate to="/Kanbas" />} />
             <Route path="/Labs/*" element={<Labs />} />
             <Route path="/Kanbas/*" element={<Kanbas />} />
           </Routes>
