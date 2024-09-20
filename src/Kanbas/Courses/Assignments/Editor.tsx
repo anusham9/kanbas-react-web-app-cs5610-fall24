@@ -49,7 +49,7 @@ export default function AssignmentEditor() {
         </tr>
 
         <tr>
-          <td align="right">
+          <td>
             <label htmlFor="wd-display-grade-as">Display Grade As</label>
           </td>
           <td>

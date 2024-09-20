@@ -26,6 +26,14 @@ export default function TOC() {
           Kanbas
         </a>
       </li>
+      <li>
+        <a
+          id="wd-github"
+          href="https://github.com/anusham9/kanbas-react-web-app-cs5610-fall24/tree/a1"
+        >
+          Anusha Mannava's GitHub
+        </a>
+      </li>
     </ul>
   );
 }
