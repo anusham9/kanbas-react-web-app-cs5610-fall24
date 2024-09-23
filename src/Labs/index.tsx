@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router';
 import Labs1 from './Lab1';
-import Labs2 from './Labs2';
+import Labs2 from './Lab2';
 import TOC from './TOC';
 
 export default function Labs() {
