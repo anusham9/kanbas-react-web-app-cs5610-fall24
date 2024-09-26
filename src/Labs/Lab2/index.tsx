@@ -1,3 +1,9 @@
+import Dimensions from './Dimensions';
+import Flex from './Flex';
+import Float from './Float';
+import GridLayout from './GridLayout';
+import Position from './Positions';
+import Zindex from './Zindex';
 import './index.css';
 export default function Lab2() {
   return (
@@ -37,13 +43,118 @@ export default function Lab2() {
           </p>
         </div>
       </div>
-      <h1>Block vs inline elements</h1>
-      <p>Headings and paragraphs are block elements. Width is parent's width</p>
+      <div id="wd-css-id-selectors">
+        <h3>ID selectors</h3>
+        <p id="wd-id-selector-1">
+          Instead of changing the look and feel of all the elements of the same
+          name, e.g., P, we can refer to a specific element by its ID
+        </p>
+        <p id="wd-id-selector-2">
+          Here's another paragraph using a different ID and a different look and
+          feel
+        </p>
+      </div>
+      <div id="wd-css-document-structure">
+        <div className="wd-selector-1">
+          <h3>Document structure selectors</h3>
+          <div className="wd-selector-2">
+            Selectors can be combined to refer elements in particular places in
+            the document
+            <p className="wd-selector-3">
+              This paragraph's red background is referenced as
+              <br />
+              .selector-2 .selector3
+              <br />
+              meaning the descendant of some ancestor.
+              <br />
+              <span className="wd-selector-4">
+                Whereas this span is a direct child of its parent
+              </span>
+              <br />
+              You can combine these relationships to create specific styles
+              depending on the document structure
+            </p>
+          </div>
+        </div>
+      </div>
+      <h1
+        style={{
+          backgroundColor: 'yellow',
+        }}
+      >
+        Block vs inline elements
+      </h1>
+      <p
+        style={{
+          padding: '10px',
+          backgroundColor: 'blue',
+          color: 'white',
+        }}
+      >
+        Headings ... width
+      </p>
       Normal text renders inline
       <br />
       <br />
-      <span>Span elements</span>
-      <span>render inline</span> with the
+      <span
+        style={{
+          backgroundColor: 'red',
+          color: 'white',
+          borderStyle: 'solid',
+          borderWidth: '10px',
+          borderColor: 'green',
+          paddingLeft: '10px',
+          paddingTop: '10px',
+        }}
+      >
+        Span elements
+      </span>
+      <span
+        style={{
+          backgroundColor: 'red',
+          color: 'white',
+          border: 'solid 10px green',
+          paddingLeft: '10px',
+          paddingTop: '10px',
+        }}
+      >
+        render inline
+      </span>
+      with the rest of the content
+      <p className="border-fat border-red border-solid">
+        {' '}
+        Solid fat red border
+      </p>
+      <p className="border-thin border-blue border-dashed">
+        Dashed thin blue border
+      </p>
+      <p
+        className="wd-rounded-corners-bottom 
+     wd-border-thin wd-border-blue wd-border-solid 
+     wd-padding-fat"
+      >
+        Rounded corners at the bottom
+      </p>
+      <p
+        className="wd-rounded-corners-all-around 
+     wd-border-thin wd-border-blue wd-border-solid 
+     wd-padding-fat"
+      >
+        Rounded corners all around
+      </p>
+      <p
+        className="wd-rounded-corners-inline 
+     wd-border-thin wd-border-blue wd-border-solid 
+     wd-padding-fat"
+      >
+        Different rounded corners
+      </p>
+      <Dimensions />
+      <Position />
+      <Zindex />
+      <Float />
+      <GridLayout />
+      <Flex />
     </div>
   );
 }
