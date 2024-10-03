@@ -8,29 +8,28 @@ export default function Assignments() {
     <>
       <br />
       <br />
-      <div className="d-flex flex-row">
-        <FaSearch className="me-2" />
-        <input
-          id="wd-search-assignment"
-          className="form-control rounded-lg"
-          style={{ padding: '15px', width: '250px' }}
-          placeholder="Search for Assignments"
-        />
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <FaSearch className="me-2" />
+          <input
+            id="wd-search-assignment"
+            className="form-control rounded-lg"
+            style={{ padding: '15px', width: '250px' }}
+            placeholder="Search for Assignments"
+          />
+        </div>
+        <div>
+          <button
+            id="wd-add-assignment-group"
+            className="btn btn-lg btn-secondary me-2"
+          >
+            + Group
+          </button>
+          <button id="wd-add-assignment" className="btn btn-lg btn-danger">
+            + Assignment
+          </button>
+        </div>
       </div>
-
-      {/* Buttons on the right */}
-      <div>
-        <button
-          id="wd-add-assignment-group"
-          className="btn btn-lg btn-secondary me-2"
-        >
-          + Group
-        </button>
-        <button id="wd-add-assignment" className="btn btn-lg btn-danger">
-          + Assignment
-        </button>
-      </div>
-
       <br />
       <br />
       <br />
