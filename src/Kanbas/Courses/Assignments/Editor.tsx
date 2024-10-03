@@ -212,7 +212,7 @@ export default function AssignmentEditor() {
         </div>
         {/* Buttons */}
         <br />
-        <div className="row mb-3">
+        <div className="d-flex float-end">
           <div className="col-sm-12">
             <button className="btn btn-secondary me-2">Cancel</button>
             <button className="btn btn-danger float-end">Save</button>
