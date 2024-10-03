@@ -33,3 +33,14 @@ body * {
 .wd-lesson {
   border-left: 3px solid green !important;
 }
+
+.wd-assignments-header {
+  display: flex;
+  border: 0;
+  justify-content: space-between;
+}
+
+.wd-assignments-buttons {
+  display: flex;
+  gap: 10px;
+}

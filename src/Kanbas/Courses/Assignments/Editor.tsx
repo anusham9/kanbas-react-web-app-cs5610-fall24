@@ -139,73 +139,73 @@ export default function AssignmentEditor() {
             </div>
           </div>
         </div>
+        <div className="flex-container">
+          {/* Assign To */}
+          <div className="row mb-3">
+            <label htmlFor="wd-assign-to" className="col-sm-2 col-form-label">
+              Assign To
+            </label>
+            <div className="col-sm-10">
+              <input
+                type="text"
+                className="form-control"
+                id="wd-assign-to"
+                value="Everyone"
+              />
+            </div>
+          </div>
 
-        {/* Assign To */}
-        <div className="row mb-3">
-          <label htmlFor="wd-assign-to" className="col-sm-2 col-form-label">
-            Assign To
-          </label>
-          <div className="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="wd-assign-to"
-              value="Everyone"
-            />
+          {/* Due Date */}
+          <div className="row mb-3">
+            <label htmlFor="wd-due-date" className="col-sm-2 col-form-label">
+              Due
+            </label>
+            <div className="col-sm-10">
+              <input
+                type="date"
+                className="form-control"
+                id="wd-due-date"
+                value="2024-05-13"
+              />
+            </div>
+          </div>
+
+          {/* Available From */}
+          <div className="row mb-3">
+            <label
+              htmlFor="wd-available-from"
+              className="col-sm-2 col-form-label"
+            >
+              Available From
+            </label>
+            <div className="col-sm-10">
+              <input
+                type="date"
+                className="form-control"
+                id="wd-available-from"
+                value="2024-05-06"
+              />
+            </div>
+          </div>
+
+          {/* Available Until */}
+          <div className="row mb-3">
+            <label
+              htmlFor="wd-available-until"
+              className="col-sm-2 col-form-label"
+            >
+              Until
+            </label>
+            <div className="col-sm-10">
+              <input
+                type="date"
+                className="form-control"
+                id="wd-available-until"
+                value="2024-05-28"
+              />
+            </div>
           </div>
         </div>
-
-        {/* Due Date */}
-        <div className="row mb-3">
-          <label htmlFor="wd-due-date" className="col-sm-2 col-form-label">
-            Due
-          </label>
-          <div className="col-sm-10">
-            <input
-              type="date"
-              className="form-control"
-              id="wd-due-date"
-              value="2024-05-13"
-            />
-          </div>
-        </div>
-
-        {/* Available From */}
-        <div className="row mb-3">
-          <label
-            htmlFor="wd-available-from"
-            className="col-sm-2 col-form-label"
-          >
-            Available From
-          </label>
-          <div className="col-sm-10">
-            <input
-              type="date"
-              className="form-control"
-              id="wd-available-from"
-              value="2024-05-06"
-            />
-          </div>
-        </div>
-
-        {/* Available Until */}
-        <div className="row mb-3">
-          <label
-            htmlFor="wd-available-until"
-            className="col-sm-2 col-form-label"
-          >
-            Until
-          </label>
-          <div className="col-sm-10">
-            <input
-              type="date"
-              className="form-control"
-              id="wd-available-until"
-              value="2024-05-28"
-            />
-          </div>
-        </div>
-
         {/* Buttons */}
         <div className="row mb-3">
           <div className="col-sm-10 offset-sm-2">
