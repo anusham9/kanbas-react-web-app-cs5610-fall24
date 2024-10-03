@@ -168,6 +168,10 @@ export default function Lab2() {
       <BootstrapLists />
       <BootstrapForms />
       <BootstrapNavigation />
+      <Float />
+      <GridLayout />
+      <Flex />
+      <BootstrapGrids />
     </div>
   );
 }
