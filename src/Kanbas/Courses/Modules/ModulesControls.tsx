@@ -3,8 +3,17 @@ import GreenCheckmark from './GreenCheckmark';
 export default function ModulesControls() {
   return (
     <div id="wd-modules-controls" className="text-nowrap">
-      <button id="wd-view-progress" className="btn btn-lg me-1 float-end">
+      <button
+        id="wd-view-progress"
+        className="btn btn-secondary btn-lg me-1 float-end"
+      >
         View Progress
+      </button>
+      <button
+        id="wd-collapse-all"
+        className="btn btn-secondary btn-lg me-1 float-end"
+      >
+        Collapse All
       </button>
       <button
         id="wd-add-module-btn"
