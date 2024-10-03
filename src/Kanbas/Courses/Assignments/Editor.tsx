@@ -33,7 +33,7 @@ export default function AssignmentEditor() {
         </div>
 
         {/* Assignment Group */}
-        <div id="wd-css-styling-dropdowns" className="row mb-3">
+        <div id="wd-css-styling-dropdowns" className="d-flex mb-3">
           <label htmlFor="wd-assignment-group" className="form-label">
             Assignment Group
           </label>
@@ -46,7 +46,7 @@ export default function AssignmentEditor() {
         </div>
 
         {/* Display Grade As */}
-        <div id="wd-css-styling-dropdowns">
+        <div id="wd-css-styling-dropdowns" className="d-flex">
           <label htmlFor="wd-assignment-group" className="form-label">
             Display Grade As
           </label>
@@ -69,7 +69,7 @@ export default function AssignmentEditor() {
         </div> */}
 
         {/* Submission Type */}
-        <div className="row mb-3">
+        <div className="d-flex">
           <label htmlFor="wd-submission-type" className="form-label">
             Submission Type
           </label>
@@ -143,9 +143,10 @@ export default function AssignmentEditor() {
             </div>
           </div>
         </div>
-        <div className="row">
-          {/* Label on the left */}
-          <div className="col-sm-2 d-flex align-items-center">
+        <br />
+        <br />
+        <div className="d-flex">
+          <div>
             <label className="form-label">Assign</label>
           </div>
           <div className="card">
@@ -210,6 +211,7 @@ export default function AssignmentEditor() {
           </div>
         </div>
         {/* Buttons */}
+        <br />
         <div className="row mb-3">
           <div className="col-sm-12">
             <button className="btn btn-secondary me-2">Cancel</button>
