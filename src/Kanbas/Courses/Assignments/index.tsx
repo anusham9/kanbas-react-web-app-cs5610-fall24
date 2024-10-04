@@ -9,8 +9,8 @@ export default function Assignments() {
       <br />
       <br />
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <div>
-          <FaSearch className="me-2" />
+        <div className="d-flex flex-row">
+          <FaSearch className="me-2 fs-5" />
           <input
             id="wd-search-assignment"
             className="form-control rounded-lg"
@@ -42,34 +42,34 @@ export default function Assignments() {
             <button className="btn btn-secondary">40% of Total</button>
             <button>+</button>
           </div>
-          <li className="d-flex wd-lesson list-group-item p-3 ps-1">
-            <div>
+          <li className="d-flex justify-content-between wd-lesson list-group-item p-3 ps-1">
+            <div className='className="d-flex flex-row justify-content-start'>
               <BsGripVertical className="me-2 fs-3" />
               <SiLibreofficewriter />
+              <div>
+                <div className="d-flex flex-column">
+                  <a
+                    className="text-decoration-none"
+                    href="#/Kanbas/Courses/1234/Assignments/123"
+                  >
+                    A1 - ENV + HTML
+                  </a>
+                </div>
+                <div>
+                  <span className="text-danger">Multiple Modules</span>
+                  <span> | Not available until May 6 at 12:00am |</span>{' '}
+                </div>
+                <div>Due May 13 at 11:59pm | 100 pts</div>
+              </div>
             </div>
-            <div>
-              <a
-                className="d-flex flex-column"
-                href="#/Kanbas/Courses/1234/Assignments/123"
-              >
-                A1 - ENV + HTML
-                <br />
-              </a>
-            </div>
-            <br />
-            <div>
-              <span className="text-danger">Multiple Modules</span>
-              <span> | Not available until May 6 at 12:00am |</span>{' '}
-            </div>
-            <div>Due May 13 at 11:59pm | 100 pts</div>
-
             <LessonControlButtons />
           </li>
-          <li className="wd-lesson list-group-item p-3 ps-1">
+
+          <li className="wd-lesson justify-content-evenly list-group-item p-3 ps-1">
             <BsGripVertical className="me-2 fs-3" />
             <SiLibreofficewriter />
             <a
-              className="wd-assignment-link"
+              className="text-decoration-none"
               href="#/Kanbas/Courses/1234/Assignments/123"
             >
               A2 - CSS + BOOTSTRAP
@@ -86,7 +86,7 @@ export default function Assignments() {
             <BsGripVertical className="me-2 fs-3" />
             <SiLibreofficewriter />
             <a
-              className="wd-assignment-link"
+              className="text-decoration-none"
               href="#/Kanbas/Courses/1234/Assignments/123"
             >
               A3 - JAVASCRIPT + REACT
