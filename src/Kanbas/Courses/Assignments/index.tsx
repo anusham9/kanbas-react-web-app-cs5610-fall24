@@ -39,7 +39,7 @@ export default function Assignments() {
           <div className="wd-title p-3 ps-2 bg-secondary">
             <BsGripVertical className="me-2 fs-3" />
             ASSIGNMENTS
-            <button className="btn btn-secondary">40% of Total</button>
+            <button className="bg-secondary">40% of Total</button>
             <button>+</button>
           </div>
           <li className="d-flex justify-content-between wd-lesson list-group-item p-3 ps-1">
