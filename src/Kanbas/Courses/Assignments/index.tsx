@@ -2,6 +2,8 @@ import { BsGripVertical } from 'react-icons/bs';
 import { SiLibreofficewriter } from 'react-icons/si';
 import LessonControlButtons from '../Modules/LessonControlButtons';
 import { FaSearch } from 'react-icons/fa';
+import { IoEllipsisVertical } from 'react-icons/io5';
+import { GoTriangleDown } from 'react-icons/go';
 
 export default function Assignments() {
   return (
@@ -10,11 +12,11 @@ export default function Assignments() {
       <br />
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div className="d-flex flex-row">
-          <FaSearch className="me-2 fs-5" />
+          <FaSearch className="me-2 fs-4" />
           <input
             id="wd-search-assignment"
             className="form-control rounded-lg"
-            style={{ padding: '15px', width: '250px' }}
+            style={{ padding: '10px', width: '250px' }}
             placeholder="Search for Assignments"
           />
         </div>
@@ -32,39 +34,44 @@ export default function Assignments() {
       </div>
       <br />
       <br />
-      <br />
-      <br />
       <ul id="wd-assignment-list">
-        <li className="wd-assignment-list-item list-group rounded-0">
-          <div className="wd-title p-3 ps-2 bg-secondary">
-            <BsGripVertical className="me-2 fs-3" />
-            ASSIGNMENTS
-            <button className="bg-secondary">40% of Total</button>
-            <button>+</button>
-          </div>
-          <li className="d-flex justify-content-between wd-lesson list-group-item p-3 ps-1">
-            <div className='className="d-flex flex-row justify-content-start'>
-              <BsGripVertical className="me-2 fs-3" />
-              <SiLibreofficewriter />
-              <div>
-                <div className="d-flex flex-column">
-                  <a
-                    className="text-decoration-none"
-                    href="#/Kanbas/Courses/1234/Assignments/123"
-                  >
-                    A1 - ENV + HTML
-                  </a>
-                </div>
-                <div>
-                  <span className="text-danger">Multiple Modules</span>
-                  <span> | Not available until May 6 at 12:00am |</span>{' '}
-                </div>
-                <div>Due May 13 at 11:59pm | 100 pts</div>
-              </div>
+        <li className="wd-assignment-list-item list-group">
+          <div className="wd-title grid-row p-3 ps-2 bg-secondary">
+            <div className="float-start" style={{ fontSize: '40px' }}>
+              <BsGripVertical className="me-2 fs-1" />
+              <GoTriangleDown />
+              ASSIGNMENTS
             </div>
+            <div className="float-end flex-container d-flex justify-content-center border-0">
+              <div className="bg-secondary flex-box rounded-pill">
+                40% of Total
+              </div>
+              <div
+                className="text-white opacity-50"
+                style={{ fontSize: '50px' }}
+              >
+                +
+              </div>
+              <IoEllipsisVertical size={30} />
+            </div>
+          </div>
+          <li className="wd-lesson list-group-item p-3 ps-1">
+            <BsGripVertical className="me-2 fs-3" />
+            <SiLibreofficewriter />
+            <a
+              className="text-decoration-none"
+              href="#/Kanbas/Courses/1234/Assignments/123"
+            >
+              A1 - ENV + HTML
+            </a>
+            <br />
+            <span className="text-danger">Multiple Modules</span>
+            <span>
+              | Not available until May 6 at 12:00am | Due May 13 at 11:59pm |
+              100 pt
+            </span>{' '}
             <LessonControlButtons />
           </li>
-
           <li className="wd-lesson justify-content-evenly list-group-item p-3 ps-1">
             <BsGripVertical className="me-2 fs-3" />
             <SiLibreofficewriter />
