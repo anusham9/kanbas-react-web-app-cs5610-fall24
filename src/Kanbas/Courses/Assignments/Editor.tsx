@@ -3,6 +3,7 @@ import React from 'react';
 export default function AssignmentEditor() {
   return (
     <div id="wd-assignments-editor">
+      <br />
       <form>
         <div className="mb-3">
           <label htmlFor="wd-assignment-name" className="form-label">
@@ -33,8 +34,8 @@ export default function AssignmentEditor() {
         </div>
 
         {/* Assignment Group */}
-        <div id="wd-css-styling-dropdowns" className="d-flex mb-3">
-          <label htmlFor="wd-assignment-group" className="form-label">
+        <div id="wd-css-styling-dropdowns" className="d-flex mb-4">
+          <label htmlFor="wd-assignment-group" className="col-sm-2 form-label">
             Assignment Group
           </label>
           <select id="wd-assignment-group" className="form-select">
@@ -46,31 +47,20 @@ export default function AssignmentEditor() {
         </div>
 
         {/* Display Grade As */}
-        <div id="wd-css-styling-dropdowns" className="d-flex">
-          <label htmlFor="wd-assignment-group" className="form-label">
+        <div id="wd-css-styling-dropdowns" className="d-flex me-4 mb-4">
+          <label htmlFor="wd-assignment-group" className="col-sm-2 form-label">
             Display Grade As
           </label>
           <select id="wd-display-grade-as" className="form-select">
             <option value="ASSIGNMENTS">Percentage</option>
           </select>
         </div>
-        {/* <div className="row mb-3">
-          <label
-            htmlFor="wd-display-grade-as"
-            className="col-sm-2 col-form-label"
-          >
-            Display Grade As
-          </label>
-          <div className="col-sm-10">
-            <select className="form-control" id="wd-display-grade-as">
-              <option value="PERCENTAGE">Percentage</option>
-            </select>
-          </div>
-        </div> */}
-
         {/* Submission Type */}
         <div className="d-flex">
-          <label htmlFor="wd-submission-type" className="form-label">
+          <label
+            htmlFor="wd-submission-type"
+            className="col-sm-2 form-label me-4 mb-4"
+          >
             Submission Type
           </label>
           <div className="card">
@@ -81,7 +71,9 @@ export default function AssignmentEditor() {
             </div>
             {/* Online Entry Options */}
             <div id="wd-css-styling-switches" className="row mb-3">
-              <label className="form-label fw-bold">Online Entry Options</label>
+              <label className="form-label fw-bold ms-3">
+                Online Entry Options
+              </label>
               <div className="col-sm-10">
                 <div className="form-check">
                   <input
@@ -145,9 +137,9 @@ export default function AssignmentEditor() {
         </div>
         <br />
         <br />
-        <div className="d-flex">
+        <div className="d-flex mb-4">
           <div>
-            <label className="form-label">Assign</label>
+            <label className="col-sm-2 form-label me-5">Assign </label>
           </div>
           <div className="card">
             <div className="card-body">
