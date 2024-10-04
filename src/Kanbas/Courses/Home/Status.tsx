@@ -28,24 +28,21 @@ export default function CourseStatus() {
       <button className="btn btn-lg btn-secondary w-100 mt-1 text-start">
         <LiaFileImportSolid className="me-2 fs-5" /> Import from Commons{' '}
       </button>
-      {/* Complete the rest of the buttons */}
+      <button className="btn btn-lg btn-secondary w-100 mt-1 text-start">
+        <LiaFileImportSolid className="me-2 fs-5" /> Choose From Homepage{' '}
+      </button>
+      <button className="btn btn-lg btn-secondary w-100 mt-1 text-start">
+        <LiaFileImportSolid className="me-2 fs-5" /> View Course Stream{' '}
+      </button>
+      <button className="btn btn-lg btn-secondary w-100 mt-1 text-start">
+        <LiaFileImportSolid className="me-2 fs-5" /> New Announcement{' '}
+      </button>
+      <button className="btn btn-lg btn-secondary w-100 mt-1 text-start">
+        <LiaFileImportSolid className="me-2 fs-5" /> New Analytics{' '}
+      </button>
+      <button className="btn btn-lg btn-secondary w-100 mt-1 text-start">
+        <LiaFileImportSolid className="me-2 fs-5" /> View Course Notifications{' '}
+      </button>
     </div>
   );
 }
-
-// export default function CourseStatus() {
-//   return (
-//     <div id="wd-course-status">
-//       <h2>Course Status</h2>
-//       <button>Unpublish</button>
-//       <button>Publish</button>
-//       <button>Import Existing Content</button>
-//       <button>Import from Commons</button>
-//       <button>Choose From Homepage</button>
-//       <button>View Course Stream</button>
-//       <button>New Announcement</button>
-//       <button>New Analytics</button>
-//       <button>View Course Notifications</button>
-//     </div>
-//   );
-// }
