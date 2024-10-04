@@ -55,11 +55,12 @@ export default function AssignmentEditor() {
             <option value="ASSIGNMENTS">Percentage</option>
           </select>
         </div>
+
         {/* Submission Type */}
         <div className="d-flex">
           <label
             htmlFor="wd-submission-type"
-            className="col-sm-2 form-label me-4 mb-4"
+            className="col-sm-2 form-label mb-4"
           >
             Submission Type
           </label>
@@ -137,14 +138,13 @@ export default function AssignmentEditor() {
         </div>
         <br />
         <br />
-        <div className="d-flex mb-4">
-          <div>
-            <label className="col-sm-2 form-label me-5">Assign </label>
-          </div>
+
+        <div className="d-flex">
+          <label className="col-sm-2 form-label mb-4">Assign</label>
+
           <div className="card">
             <div className="card-body">
               <div className="row mb-3">
-                {/* Assign To */}
                 <div className="col-sm-6">
                   <label htmlFor="wd-assign-to" className="form-label fw-bold">
                     Assign To
