@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router';
 import Labs1 from './Lab1';
 import Labs2 from './Lab2';
 import TOC from './TOC';
+import Lab3 from './Lab3';
 
 export default function Labs() {
   return (
@@ -12,7 +13,7 @@ export default function Labs() {
       <Routes>
         <Route path="Lab1" element={<Labs1 />} />
         <Route path="Lab2" element={<Labs2 />} />
-        <Route path="Lab3" element={<h2>Lab 3</h2>} />
+        <Route path="Lab3/*" element={<Lab3 />} />
       </Routes>
     </div>
   );
