@@ -4,8 +4,14 @@ import LessonControlButtons from '../Modules/LessonControlButtons';
 import { FaSearch } from 'react-icons/fa';
 import { IoEllipsisVertical } from 'react-icons/io5';
 import { GoTriangleDown } from 'react-icons/go';
+import * as db from '../../Database';
+import { useParams } from 'react-router';
 
 export default function Assignments() {
+  const { cid } = useParams();
+  const assignments = db.assignments.filter(
+    (assignment) => assignment.course === cid
+  );
   return (
     <>
       <br />
@@ -55,7 +61,28 @@ export default function Assignments() {
               <IoEllipsisVertical size={30} />
             </div>
           </div>
-          <li className="wd-lesson list-group-item p-3 ps-1">
+
+          {assignments &&
+            assignments.map((assignment) => (
+              <li className="wd-lesson list-group-item p-3 ps-1">
+                <BsGripVertical className="me-2 fs-3" />
+                <SiLibreofficewriter />
+                <a
+                  className="text-decoration-none"
+                  href="#/Kanbas/Courses/1234/Assignments/123"
+                >
+                  {assignment.title}
+                </a>
+                <br />
+                <span className="text-danger">Multiple Modules</span>
+                <span>
+                  | Not available until May 6 at 12:00am | Due May 13 at 11:59pm
+                  | 100 pt
+                </span>{' '}
+                <LessonControlButtons />
+              </li>
+            ))}
+          {/* <li className="wd-lesson list-group-item p-3 ps-1">
             <BsGripVertical className="me-2 fs-3" />
             <SiLibreofficewriter />
             <a
@@ -88,8 +115,9 @@ export default function Assignments() {
             </span>{' '}
             | 100 pts
             <LessonControlButtons />
-          </li>
-          <li className="wd-lesson list-group-item p-3 ps-1">
+          </li> */}
+
+          {/* <li className="wd-lesson list-group-item p-3 ps-1">
             <BsGripVertical className="me-2 fs-3" />
             <SiLibreofficewriter />
             <a
@@ -105,7 +133,7 @@ export default function Assignments() {
             </span>{' '}
             | 100 pts
             <LessonControlButtons />
-          </li>
+          </li> */}
         </li>
       </ul>
     </>
