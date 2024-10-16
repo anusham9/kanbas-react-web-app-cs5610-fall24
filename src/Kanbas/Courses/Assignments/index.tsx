@@ -6,6 +6,7 @@ import { IoEllipsisVertical } from 'react-icons/io5';
 import { GoTriangleDown } from 'react-icons/go';
 import * as db from '../../Database';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function Assignments() {
   const { cid } = useParams();
@@ -69,7 +70,7 @@ export default function Assignments() {
                 <SiLibreofficewriter />
                 <a
                   className="text-decoration-none"
-                  href="#/Kanbas/Courses/1234/Assignments/123"
+                  href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
                 >
                   {assignment.title}
                 </a>
@@ -82,58 +83,6 @@ export default function Assignments() {
                 <LessonControlButtons />
               </li>
             ))}
-          {/* <li className="wd-lesson list-group-item p-3 ps-1">
-            <BsGripVertical className="me-2 fs-3" />
-            <SiLibreofficewriter />
-            <a
-              className="text-decoration-none"
-              href="#/Kanbas/Courses/1234/Assignments/123"
-            >
-              A1 - ENV + HTML
-            </a>
-            <br />
-            <span className="text-danger">Multiple Modules</span>
-            <span>
-              | Not available until May 6 at 12:00am | Due May 13 at 11:59pm |
-              100 pt
-            </span>{' '}
-            <LessonControlButtons />
-          </li>
-          <li className="wd-lesson justify-content-evenly list-group-item p-3 ps-1">
-            <BsGripVertical className="me-2 fs-3" />
-            <SiLibreofficewriter />
-            <a
-              className="text-decoration-none"
-              href="#/Kanbas/Courses/1234/Assignments/123"
-            >
-              A2 - CSS + BOOTSTRAP
-              <br />
-            </a>
-            <span className="text-danger">Multiple Modules</span>
-            <span>
-              | Not available until May 13 at 12:00am | Due May 20 at 11:59pm{' '}
-            </span>{' '}
-            | 100 pts
-            <LessonControlButtons />
-          </li> */}
-
-          {/* <li className="wd-lesson list-group-item p-3 ps-1">
-            <BsGripVertical className="me-2 fs-3" />
-            <SiLibreofficewriter />
-            <a
-              className="text-decoration-none"
-              href="#/Kanbas/Courses/1234/Assignments/123"
-            >
-              A3 - JAVASCRIPT + REACT
-            </a>
-            <br />
-            <span className="text-danger">Multiple Modules</span>
-            <span>
-              | Not available until May 20 at 12:00am | Due May 27 at 11:59pm{' '}
-            </span>{' '}
-            | 100 pts
-            <LessonControlButtons />
-          </li> */}
         </li>
       </ul>
     </>
