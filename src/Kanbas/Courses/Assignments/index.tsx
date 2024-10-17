@@ -65,7 +65,10 @@ export default function Assignments() {
 
           {assignments &&
             assignments.map((assignment) => (
-              <li className="wd-lesson list-group-item p-3 ps-1">
+              <li
+                key={assignment._id}
+                className="wd-lesson list-group-item p-3 ps-1"
+              >
                 <BsGripVertical className="me-2 fs-3" />
                 <SiLibreofficewriter />
                 <a

@@ -178,7 +178,7 @@ export default function AssignmentEditor() {
                     type="date"
                     className="form-control"
                     id="wd-due-date"
-                    value="2024-05-13"
+                    value={assignment && assignment.dueDate}
                   />
                 </div>
               </div>
@@ -193,7 +193,7 @@ export default function AssignmentEditor() {
                     type="date"
                     className="form-control"
                     id="wd-available-from"
-                    value="2024-05-06"
+                    value={assignment && assignment.availableDate}
                   />
                 </div>
 
@@ -206,7 +206,7 @@ export default function AssignmentEditor() {
                     type="date"
                     className="form-control"
                     id="wd-available-until"
-                    value="2024-05-28"
+                    value={assignment && assignment.until}
                   />
                 </div>
               </div>
