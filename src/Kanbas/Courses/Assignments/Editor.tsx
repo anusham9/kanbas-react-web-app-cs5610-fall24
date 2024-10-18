@@ -22,11 +22,13 @@ export default function AssignmentEditor() {
             value={assignment && assignment.title}
           />
         </div>
-
         <div className="mb-3">
-          <textarea className="form-control" rows={6}></textarea>
+          <textarea
+            className="form-control"
+            rows={6}
+            value={assignment && assignment.description}
+          ></textarea>
         </div>
-
         {/* Points */}
         <div className="d-flex mb-3 ">
           <label
@@ -43,7 +45,6 @@ export default function AssignmentEditor() {
             />
           </div>
         </div>
-
         {/* Assignment Group */}
         <div id="wd-css-styling-dropdowns" className="d-flex mb-4">
           <label htmlFor="wd-assignment-group" className="col-sm-2 form-label">
@@ -56,7 +57,6 @@ export default function AssignmentEditor() {
             <option value="PROJECT">PROJECT</option>
           </select>
         </div>
-
         {/* Display Grade As */}
         <div id="wd-css-styling-dropdowns" className="d-flex me-4 mb-4">
           <label htmlFor="wd-assignment-group" className="col-sm-2 form-label">
@@ -66,7 +66,6 @@ export default function AssignmentEditor() {
             <option value="ASSIGNMENTS">Percentage</option>
           </select>
         </div>
-
         {/* Submission Type */}
         <div className="d-flex">
           <label
@@ -149,7 +148,6 @@ export default function AssignmentEditor() {
         </div>
         <br />
         <br />
-
         <div className="d-flex">
           <label className="col-sm-2 form-label mb-4">Assign</label>
 
