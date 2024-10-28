@@ -1,3 +1,5 @@
+import TodoForm from '../Lab4/ReduxExamples/todos/TodoForm';
+import TodoList from '../Lab4/ReduxExamples/todos/TodoList';
 import BootstrapForms from './BootstrapForms';
 import BootstrapGrids from './BootstrapGrids';
 import BootstrapLists from './BootstrapLists';
@@ -16,6 +18,7 @@ export default function Lab2() {
   return (
     <div id="wd-lab2" className="container">
       <h2>Lab 2 - Cascading Style Sheets</h2>
+      <TodoForm />
       <h3>Styling with the STYLE attribute</h3>
       <p>
         Style attribute allows configuring look and feel right on the element.
