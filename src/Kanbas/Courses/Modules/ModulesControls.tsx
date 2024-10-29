@@ -2,6 +2,8 @@ import ModuleEditor from './ModuleEditor';
 
 import { FaPlus } from 'react-icons/fa6';
 import GreenCheckmark from './GreenCheckmark';
+import { useSelector } from 'react-redux';
+
 export default function ModulesControls({
   moduleName,
   setModuleName,
@@ -11,6 +13,7 @@ export default function ModulesControls({
   setModuleName: (title: string) => void;
   addModule: () => void;
 }) {
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   return (
     <div id="wd-modules-controls" className="text-nowrap">
       <button
@@ -25,14 +28,19 @@ export default function ModulesControls({
       >
         Collapse All
       </button>
-      <button
-        className="btn btn-lg btn-danger me-1 float-end"
-        data-bs-toggle="modal"
-        data-bs-target="#wd-add-module-dialog"
-      >
-        <FaPlus className="position-relative me-2" style={{ bottom: '1px' }} />
-        Module
-      </button>
+      {currentUser.role == 'FACULTY' && (
+        <button
+          className="btn btn-lg btn-danger me-1 float-end"
+          data-bs-toggle="modal"
+          data-bs-target="#wd-add-module-dialog"
+        >
+          <FaPlus
+            className="position-relative me-2"
+            style={{ bottom: '1px' }}
+          />
+          Module
+        </button>
+      )}
       <div className="dropdown d-inline me-1 float-end">
         <button
           id="wd-publish-all-btn"
@@ -66,12 +74,14 @@ export default function ModulesControls({
           </li>
         </ul>
       </div>
-      <ModuleEditor
-        dialogTitle="Add Module"
-        moduleName={moduleName}
-        setModuleName={setModuleName}
-        addModule={addModule}
-      />
+      {currentUser.role == 'FACULTY' && (
+        <ModuleEditor
+          dialogTitle="Add Module"
+          moduleName={moduleName}
+          setModuleName={setModuleName}
+          addModule={addModule}
+        />
+      )}
     </div>
   );
 }

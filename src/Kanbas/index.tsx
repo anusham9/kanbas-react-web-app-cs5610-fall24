@@ -11,8 +11,7 @@ import store from './store';
 import ProtectedRoute from './Account/ProtectedRoute';
 
 export default function Kanbas() {
-  const [courses, setCourses] = useState<any[]>(db.courses);
-
+  const [courses, setCourses] = useState(db.courses);
   const [course, setCourse] = useState<any>({
     _id: '0',
     name: 'New Course',
@@ -24,13 +23,12 @@ export default function Kanbas() {
   });
   const addNewCourse = () => {
     const newCourse = { ...course, _id: new Date().getTime().toString() };
-    setCourses([...courses, { ...course, ...newCourse }]);
+    setCourses([...courses, { ...course, newCourse }]);
+    console.log(courses);
   };
-
   const deleteCourse = (courseId: string) => {
     setCourses(courses.filter((course) => course._id !== courseId));
   };
-
   const updateCourse = () => {
     setCourses(
       courses.map((c) => {
@@ -57,11 +55,10 @@ export default function Kanbas() {
                   <Dashboard
                     courses={courses}
                     course={course}
-                    setCourses={setCourses}
                     setCourse={setCourse}
-                    updateCourse={updateCourse}
                     addNewCourse={addNewCourse}
                     deleteCourse={deleteCourse}
+                    updateCourse={updateCourse}
                   />
                 </ProtectedRoute>
               }
