@@ -7,11 +7,13 @@ import { useState } from 'react';
 import ModuleControlButtons from './ModuleControlButtons';
 import { addModule, editModule, updateModule, deleteModule } from './reducer';
 import { useSelector, useDispatch } from 'react-redux';
+import { current } from '@reduxjs/toolkit';
 
 export default function Modules() {
   const { cid } = useParams();
   const [moduleName, setModuleName] = useState('');
   const { modules } = useSelector((state: any) => state.modulesReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const dispatch = useDispatch();
   return (
     <div>
@@ -62,11 +64,15 @@ export default function Modules() {
                     value={module.name}
                   />
                 )}
-                <ModuleControlButtons
-                  moduleId={module._id}
-                  deleteModule={(moduleId) => dispatch(deleteModule(moduleId))}
-                  editModule={(moduleId) => dispatch(editModule(moduleId))}
-                />
+                {currentUser.role == 'FACULTY' && (
+                  <ModuleControlButtons
+                    moduleId={module._id}
+                    deleteModule={(moduleId) =>
+                      dispatch(deleteModule(moduleId))
+                    }
+                    editModule={(moduleId) => dispatch(editModule(moduleId))}
+                  />
+                )}
               </div>
               <ul className="wd-lessons list-group rounded-0">
                 {module.lessons &&
