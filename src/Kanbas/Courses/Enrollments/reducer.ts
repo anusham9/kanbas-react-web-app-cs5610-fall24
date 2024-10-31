@@ -3,7 +3,7 @@ import { enrollments } from '../../Database';
 const initialState = {
   enrollments: enrollments,
 };
-const modulesSlice = createSlice({
+const enrollmentsSlice = createSlice({
   name: 'enrollments',
   initialState,
   reducers: {
@@ -23,5 +23,5 @@ const modulesSlice = createSlice({
   },
 });
 
-export const { addEnrollment, removeEnrollment } = modulesSlice.actions;
-export default modulesSlice.reducer;
+export const { addEnrollment, removeEnrollment } = enrollmentsSlice.actions;
+export default enrollmentsSlice.reducer;
