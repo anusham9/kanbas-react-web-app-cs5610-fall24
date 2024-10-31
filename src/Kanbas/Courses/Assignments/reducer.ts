@@ -22,7 +22,7 @@ const assignmentsSlice = createSlice({
       };
       state.assignments = [...state.assignments, newAssignment] as any;
     },
-    deletAssignment: (state, { payload: assignmentId }) => {
+    deleteAssignment: (state, { payload: assignmentId }) => {
       state.assignments = state.assignments.filter(
         (a: any) => a._id !== assignmentId
       );
@@ -32,18 +32,9 @@ const assignmentsSlice = createSlice({
         a._id === assignment._id ? assignment : a
       ) as any;
     },
-    editAssignment: (state, { payload: assignmentId }) => {
-      state.assignments = state.assignments.map((a: any) =>
-        a._id === assignmentId ? { ...a, editing: true } : a
-      ) as any;
-    },
   },
 });
 
-export const {
-  addAssignment,
-  deletAssignment,
-  updateAssignment,
-  editAssignment,
-} = assignmentsSlice.actions;
+export const { addAssignment, deleteAssignment, updateAssignment } =
+  assignmentsSlice.actions;
 export default assignmentsSlice.reducer;

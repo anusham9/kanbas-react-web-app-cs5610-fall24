@@ -7,12 +7,7 @@ import { GoTriangleDown } from 'react-icons/go';
 import * as db from '../../Database';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import {
-  addAssignment,
-  deletAssignment,
-  editAssignment,
-  updateAssignment,
-} from './reducer';
+import { addAssignment, deleteAssignment, updateAssignment } from './reducer';
 import { useSelector } from 'react-redux';
 
 export default function Assignments() {
@@ -91,7 +86,7 @@ export default function Assignments() {
                 <span className="text-danger">Multiple Modules</span>
                 <span>
                   | Not available until May 6 at 12:00am | Due May 13 at 11:59pm
-                  | 100 pt
+                  | {assignment.points}
                 </span>{' '}
                 <LessonControlButtons />
               </li>

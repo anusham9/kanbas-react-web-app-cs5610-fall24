@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import * as db from '../../Database';
 import { Link, useNavigate } from 'react-router-dom';
-import { addAssignment } from './reducer';
+import { addAssignment, updateAssignment } from './reducer';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function AssignmentEditor() {
@@ -51,12 +51,13 @@ export default function AssignmentEditor() {
       availableDate,
       until,
       course,
+      _id: existingAssignment ? aid : undefined,
     };
 
     if (isNewAssignment) {
       dispatch(addAssignment(assignmentData));
     } else {
-      // Update logic if needed
+      dispatch(updateAssignment(assignmentData));
     }
 
     navigate(`/Kanbas/Courses/${cid}/Assignments`);
