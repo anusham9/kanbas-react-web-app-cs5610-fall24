@@ -1,20 +1,31 @@
 import { BsGripVertical } from 'react-icons/bs';
 import { SiLibreofficewriter } from 'react-icons/si';
 import LessonControlButtons from '../Modules/LessonControlButtons';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaTrash } from 'react-icons/fa';
 import { IoEllipsisVertical } from 'react-icons/io5';
 import { GoTriangleDown } from 'react-icons/go';
-import * as db from '../../Database';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { addAssignment, deleteAssignment, updateAssignment } from './reducer';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import DeleteAssignmentModal from './DeleteAssignmentModal';
+import { useState } from 'react';
 
 export default function Assignments() {
   const { cid } = useParams();
   const assignments = useSelector(
     (state: any) => state.assignmentsReducer.assignments
-  ).filter((a: any) => a.course == cid);
+  ).filter((a: any) => a.course === cid);
+  const dispatch = useDispatch();
+  // const [deletingModal, setIsDeletingModal] = useState(false);
+
+  // const handleDeleteClick = () => {
+  //   setIsDeletingModal(true); // Show the modal when FaTrash is clicked
+  // };
+
+  // const closeModal = () => {
+  //   setIsDeletingModal(false); // Hide the modal
+  // };
 
   return (
     <>
@@ -88,6 +99,16 @@ export default function Assignments() {
                   | Not available until May 6 at 12:00am | Due May 13 at 11:59pm
                   | {assignment.points}
                 </span>{' '}
+                <FaTrash
+                  className="text-danger me-2 mb-1"
+                  data-bs-toggle="modal"
+                  data-bs-target="#deleteAssignmentModal"
+                />
+                <DeleteAssignmentModal
+                  dialogTitle="Are you sure you want to delete this?"
+                  assignmentId={assignment._id}
+                  deleteAssignment={(id) => dispatch(deleteAssignment(id))}
+                />
                 <LessonControlButtons />
               </li>
             ))}

@@ -7,7 +7,6 @@ import { useState } from 'react';
 import ModuleControlButtons from './ModuleControlButtons';
 import { addModule, editModule, updateModule, deleteModule } from './reducer';
 import { useSelector, useDispatch } from 'react-redux';
-import { current } from '@reduxjs/toolkit';
 
 export default function Modules() {
   const { cid } = useParams();
