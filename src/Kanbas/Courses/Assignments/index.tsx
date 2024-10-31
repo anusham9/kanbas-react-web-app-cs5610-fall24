@@ -7,6 +7,12 @@ import { GoTriangleDown } from 'react-icons/go';
 import * as db from '../../Database';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import {
+  addAssignment,
+  deletAssignment,
+  editAssignment,
+  updateAssignment,
+} from './reducer';
 
 export default function Assignments() {
   const { cid } = useParams();
@@ -34,9 +40,11 @@ export default function Assignments() {
           >
             + Group
           </button>
-          <button id="wd-add-assignment" className="btn btn-lg btn-danger">
-            + Assignment
-          </button>
+          <Link to={`/Kanbas/Courses/${cid}/Assignments/new`}>
+            <button id="wd-add-assignment" className="btn btn-lg btn-danger">
+              + Assignment
+            </button>
+          </Link>
         </div>
       </div>
       <br />
