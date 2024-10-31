@@ -13,12 +13,14 @@ import {
   editAssignment,
   updateAssignment,
 } from './reducer';
+import { useSelector } from 'react-redux';
 
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = db.assignments.filter(
-    (assignment) => assignment.course === cid
-  );
+  const assignments = useSelector(
+    (state: any) => state.assignmentsReducer.assignments
+  ).filter((a: any) => a.course == cid);
+
   return (
     <>
       <br />
@@ -72,7 +74,7 @@ export default function Assignments() {
           </div>
 
           {assignments &&
-            assignments.map((assignment) => (
+            assignments.map((assignment: any) => (
               <li
                 key={assignment._id}
                 className="wd-lesson list-group-item p-3 ps-1"

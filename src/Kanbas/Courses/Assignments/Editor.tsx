@@ -15,7 +15,7 @@ export default function AssignmentEditor() {
 
   const assignments = useSelector(
     (state: any) => state.assignmentsReducer.assignments
-  );
+  ).filter((a: any) => a.course == cid);
 
   const course = cid;
   const existingAssignment = assignments.find(
@@ -102,7 +102,7 @@ export default function AssignmentEditor() {
               id="wd-assignment-points"
               type="number"
               value={points}
-              onChange={(e) => setPoints(Number(e.target.value))}
+              onChange={(e) => setPoints(e.target.value)}
             />
           </div>
         </div>
