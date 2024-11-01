@@ -6,10 +6,9 @@ import { IoEllipsisVertical } from 'react-icons/io5';
 import { GoTriangleDown } from 'react-icons/go';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { addAssignment, deleteAssignment, updateAssignment } from './reducer';
+import { deleteAssignment } from './reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteAssignmentModal from './DeleteAssignmentModal';
-import { useState } from 'react';
 
 export default function Assignments() {
   const { cid } = useParams();

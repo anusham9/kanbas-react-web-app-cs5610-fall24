@@ -1,8 +1,5 @@
-//
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
-import * as db from '../../Database';
 import { Link, useNavigate } from 'react-router-dom';
 import { addAssignment, updateAssignment } from './reducer';
 import { useDispatch, useSelector } from 'react-redux';

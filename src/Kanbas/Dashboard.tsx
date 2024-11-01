@@ -23,7 +23,7 @@ export default function Dashboard({
 
   const dispatch = useDispatch();
 
-  const handleEnrollmentToggle = (courseId: string) => {
+  const handleEnrollment = (courseId: string) => {
     const existingEnrollment = enrollments.find(
       (enrollment: any) =>
         enrollment.user === currentUser._id && enrollment.course === courseId
@@ -142,7 +142,7 @@ export default function Dashboard({
                         } float-end`}
                         onClick={(e) => {
                           e.preventDefault();
-                          handleEnrollmentToggle(course._id);
+                          handleEnrollment(course._id);
                         }}
                       >
                         {enrollments.some(
