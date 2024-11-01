@@ -92,10 +92,11 @@ export default function Dashboard({
           />
         </>
       )}
-
-      <h2 id="wd-dashboard-published">
-        {showAllCourses ? 'All Courses' : 'My Enrollments'}
-      </h2>
+      {currentUser.role === 'STUDENT' && (
+        <h2 id="wd-dashboard-published">
+          {showAllCourses ? 'All Courses' : 'My Enrollments'}
+        </h2>
+      )}
       <hr />
 
       <div id="wd-dashboard-courses" className="row">
