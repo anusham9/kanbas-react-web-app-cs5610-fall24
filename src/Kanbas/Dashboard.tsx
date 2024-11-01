@@ -49,9 +49,10 @@ export default function Dashboard({
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1>
+      <hr />
       {currentUser.role === 'STUDENT' && (
         <button
-          className="btn btn-primary float-end mt-4 mr-3"
+          className="btn btn-primary float-end"
           onClick={() => setShowAllCourses((initial) => !initial)}
         >
           {showAllCourses ? 'My Enrollments' : 'All Courses'}
@@ -91,7 +92,6 @@ export default function Dashboard({
           />
         </>
       )}
-      <hr />
 
       <h2 id="wd-dashboard-published">
         {showAllCourses ? 'All Courses' : 'My Enrollments'}
