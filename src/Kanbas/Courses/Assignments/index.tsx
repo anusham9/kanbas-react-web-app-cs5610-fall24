@@ -13,19 +13,10 @@ import { useState } from 'react';
 
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = useSelector(
-    (state: any) => state.assignmentsReducer.assignments
-  ).filter((a: any) => a.course === cid);
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const filteredAssignments = assignments.filter((a: any) => a.course === cid);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const dispatch = useDispatch();
-  // const [deletingModal, setIsDeletingModal] = useState(false);
-
-  // const handleDeleteClick = () => {
-  //   setIsDeletingModal(true); // Show the modal when FaTrash is clicked
-  // };
-
-  // const closeModal = () => {
-  //   setIsDeletingModal(false); // Hide the modal
-  // };
 
   return (
     <>
@@ -41,19 +32,21 @@ export default function Assignments() {
             placeholder="Search for Assignments"
           />
         </div>
-        <div>
-          <button
-            id="wd-add-assignment-group"
-            className="btn btn-lg btn-secondary me-2"
-          >
-            + Group
-          </button>
-          <Link to={`/Kanbas/Courses/${cid}/Assignments/new`}>
-            <button id="wd-add-assignment" className="btn btn-lg btn-danger">
-              + Assignment
+        {currentUser.role === 'FACULTY' && (
+          <div>
+            <button
+              id="wd-add-assignment-group"
+              className="btn btn-lg btn-secondary me-2"
+            >
+              + Group
             </button>
-          </Link>
-        </div>
+            <Link to={`/Kanbas/Courses/${cid}/Assignments/new`}>
+              <button id="wd-add-assignment" className="btn btn-lg btn-danger">
+                + Assignment
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
       <br />
       <br />
@@ -79,37 +72,54 @@ export default function Assignments() {
             </div>
           </div>
 
-          {assignments &&
-            assignments.map((assignment: any) => (
+          {filteredAssignments &&
+            filteredAssignments.map((assignment: any) => (
               <li
                 key={assignment._id}
                 className="wd-lesson list-group-item p-3 ps-1"
               >
                 <BsGripVertical className="me-2 fs-3" />
-                <SiLibreofficewriter />
-                <a
-                  className="text-decoration-none"
-                  href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
-                >
-                  {assignment.title}
-                </a>
+                <SiLibreofficewriter className="me-2 fs-4" />
+                {currentUser.role === 'FACULTY' ? (
+                  <a
+                    className="text-decoration-none"
+                    href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
+                  >
+                    {assignment.title}
+                  </a>
+                ) : (
+                  <span>{assignment.title}</span>
+                )}
                 <br />
-                <span className="text-danger">Multiple Modules</span>
-                <span>
-                  | Not available until May 6 at 12:00am | Due May 13 at 11:59pm
-                  | {assignment.points}
-                </span>{' '}
-                <FaTrash
-                  className="text-danger me-2 mb-1"
-                  data-bs-toggle="modal"
-                  data-bs-target="#deleteAssignmentModal"
-                />
-                <DeleteAssignmentModal
-                  dialogTitle="Are you sure you want to delete this?"
-                  assignmentId={assignment._id}
-                  deleteAssignment={(id) => dispatch(deleteAssignment(id))}
-                />
-                <LessonControlButtons />
+                <div className="d-flex justify-content-between align-items-center">
+                  <div>
+                    <span className="text-danger">Multiple Modules</span>
+                    <span>
+                      | Not available until May 6 at 12:00am | Due May 13 at
+                      11:59pm |{assignment.points}
+                    </span>
+                  </div>
+
+                  <div className="d-flex align-items-center">
+                    {currentUser.role === 'FACULTY' && (
+                      <>
+                        <FaTrash
+                          className="text-danger me-2 mb-1"
+                          data-bs-toggle="modal"
+                          data-bs-target="#deleteAssignmentModal"
+                        />
+                        <DeleteAssignmentModal
+                          dialogTitle="Are you sure you want to delete this?"
+                          assignmentId={assignment._id}
+                          deleteAssignment={(id) =>
+                            dispatch(deleteAssignment(id))
+                          }
+                        />
+                      </>
+                    )}
+                    <LessonControlButtons />
+                  </div>
+                </div>
               </li>
             ))}
         </li>
