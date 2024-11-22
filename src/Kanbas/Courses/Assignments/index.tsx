@@ -6,16 +6,33 @@ import { IoEllipsisVertical } from 'react-icons/io5';
 import { GoTriangleDown } from 'react-icons/go';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { deleteAssignment } from './reducer';
+import { deleteAssignment, setAssignments } from './reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteAssignmentModal from './DeleteAssignmentModal';
+import * as coursesClient from '../client';
+import { useEffect } from 'react';
+import * as assignmentsClient from './client';
 
 export default function Assignments() {
   const { cid } = useParams();
-  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
-  const filteredAssignments = assignments.filter((a: any) => a.course === cid);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const dispatch = useDispatch();
+
+  const fetchAssignments = async () => {
+    const assignments = await coursesClient.findAssignmentsForCourse(
+      cid as string
+    );
+    dispatch(setAssignments(assignments));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
+
+  const removeAssignment = async (assignmentId: string) => {
+    await assignmentsClient.deleteAssignment(assignmentId);
+    dispatch(deleteAssignment(assignmentId));
+  };
 
   return (
     <>
@@ -71,56 +88,53 @@ export default function Assignments() {
             </div>
           </div>
 
-          {filteredAssignments &&
-            filteredAssignments.map((assignment: any) => (
-              <li
-                key={assignment._id}
-                className="wd-lesson list-group-item p-3 ps-1"
-              >
-                <BsGripVertical className="me-2 fs-3" />
-                <SiLibreofficewriter className="me-2 fs-4" />
-                {currentUser.role === 'FACULTY' ? (
-                  <a
-                    className="text-decoration-none"
-                    href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
-                  >
-                    {assignment.title}
-                  </a>
-                ) : (
-                  <span>{assignment.title}</span>
-                )}
-                <br />
-                <div className="d-flex justify-content-between align-items-center">
-                  <div>
-                    <span className="text-danger">Multiple Modules</span>
-                    <span>
-                      | Not available until May 6 at 12:00am | Due May 13 at
-                      11:59pm |{assignment.points}
-                    </span>
-                  </div>
-
-                  <div className="d-flex align-items-center">
-                    {currentUser.role === 'FACULTY' && (
-                      <>
-                        <FaTrash
-                          className="text-danger me-2 mb-1"
-                          data-bs-toggle="modal"
-                          data-bs-target="#deleteAssignmentModal"
-                        />
-                        <DeleteAssignmentModal
-                          dialogTitle="Are you sure you want to delete this?"
-                          assignmentId={assignment._id}
-                          deleteAssignment={(id) =>
-                            dispatch(deleteAssignment(id))
-                          }
-                        />
-                      </>
-                    )}
-                    <LessonControlButtons />
-                  </div>
+          {assignments.map((assignment: any) => (
+            <li
+              key={assignment._id}
+              className="wd-lesson list-group-item p-3 ps-1"
+            >
+              <BsGripVertical className="me-2 fs-3" />
+              <SiLibreofficewriter className="me-2 fs-4" />
+              {currentUser.role === 'FACULTY' ? (
+                <a
+                  className="text-decoration-none"
+                  href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
+                >
+                  {assignment.title}
+                </a>
+              ) : (
+                <span>{assignment.title}</span>
+              )}
+              <br />
+              <div className="d-flex justify-content-between align-items-center">
+                <div>
+                  <span className="text-danger">Multiple Modules</span>
+                  <span>
+                    | Not available until May 6 at 12:00am | Due May 13 at
+                    11:59pm |{assignment.points}
+                  </span>
                 </div>
-              </li>
-            ))}
+
+                <div className="d-flex align-items-center">
+                  {currentUser.role === 'FACULTY' && (
+                    <>
+                      <FaTrash
+                        className="text-danger me-2 mb-1"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deleteAssignmentModal"
+                      />
+                      <DeleteAssignmentModal
+                        dialogTitle="Are you sure you want to delete this?"
+                        assignmentId={assignment._id}
+                        deleteAssignment={removeAssignment}
+                      />
+                    </>
+                  )}
+                  <LessonControlButtons />
+                </div>
+              </div>
+            </li>
+          ))}
         </li>
       </ul>
     </>
