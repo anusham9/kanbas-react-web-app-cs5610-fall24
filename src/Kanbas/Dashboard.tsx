@@ -18,6 +18,9 @@ export default function Dashboard({
   deleteCourse,
   updateCourse,
   fetchCourses,
+  enrolling,
+  setEnrolling,
+  updateEnrollment,
 }: {
   courses: any[];
   course: any;
@@ -26,26 +29,29 @@ export default function Dashboard({
   deleteCourse: (course: any) => void;
   updateCourse: () => void;
   fetchCourses: () => void;
+  enrolling: boolean;
+  setEnrolling: (enrolling: boolean) => void;
+  updateEnrollment: (courseId: string, enrolled: boolean) => void;
 }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
   const [showAllCourses, setShowAllCourses] = useState(false);
   const [allCourses, setAllCourses] = useState([]);
 
-  const fetchEnrollments = async () => {
-    const enrollments = await enrollmentsClients.fetchEnrollments(
-      currentUser._id
-    );
-    dispatch(setEnrollments(enrollments));
-    console.log(enrollments);
-  };
+  // const fetchEnrollments = async () => {
+  //   const enrollments = await enrollmentsClients.fetchEnrollments(
+  //     currentUser._id
+  //   );
+  //   dispatch(setEnrollments(enrollments));
+  //   console.log(enrollments);
+  // };
 
   //fetch enrollments if user changes
-  useEffect(() => {
-    if (currentUser) {
-      fetchEnrollments();
-    }
-  }, [currentUser]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     fetchEnrollments();
+  //   }
+  // }, [currentUser]);
 
   // Fetch courses whenever enrollments are updated
   useEffect(() => {
@@ -68,41 +74,49 @@ export default function Dashboard({
 
   const dispatch = useDispatch();
 
-  const handleEnrollment = async (courseId: string) => {
-    const existingEnrollment = enrollments.find(
-      (enrollment: any) =>
-        enrollment.user === currentUser._id && enrollment.course === courseId
-    );
+  // const handleEnrollment = async (courseId: string) => {
+  //   const existingEnrollment = enrollments.find(
+  //     (enrollment: any) =>
+  //       enrollment.user === currentUser._id && enrollment.course === courseId
+  //   );
 
-    if (existingEnrollment) {
-      await enrollmentsClients.removeEnrollment(currentUser._id, courseId);
-      dispatch(removeEnrollment({ user: currentUser._id, course: courseId }));
-    } else {
-      const updatedEnrollments = await enrollmentsClients.addEnrollment(
-        currentUser._id,
-        courseId
-      );
-      dispatch(addEnrollment({ currentUser, courseId }));
-      dispatch(setEnrollments(updatedEnrollments));
-    }
-  };
+  //   if (existingEnrollment) {
+  //     await enrollmentsClients.removeEnrollment(currentUser._id, courseId);
+  //     dispatch(removeEnrollment({ user: currentUser._id, course: courseId }));
+  //   } else {
+  //     const updatedEnrollments = await enrollmentsClients.addEnrollment(
+  //       currentUser._id,
+  //       courseId
+  //     );
+  //     dispatch(addEnrollment({ currentUser, courseId }));
+  //     dispatch(setEnrollments(updatedEnrollments));
+  //   }
+  // };
 
   const filteredCourses = showAllCourses ? allCourses : courses;
 
   return (
     <div id="wd-dashboard">
-      <h1 id="wd-dashboard-title">Dashboard</h1>
+      <h1 id="wd-dashboard-title">
+        Dashboard{' '}
+        <button
+          onClick={() => setEnrolling(!enrolling)}
+          className="float-end btn btn-primary"
+        >
+          {enrolling ? 'My Courses' : 'All Courses'}
+        </button>
+      </h1>
       <hr />
-      {currentUser.role === 'STUDENT' && (
+      {/* {currentUser.role === 'STUDENT' && (
         <button
           className="btn btn-primary float-end"
           onClick={() => setShowAllCourses((initial) => !initial)}
         >
           {showAllCourses ? 'My Enrollments' : 'All Courses'}
         </button>
-      )}
+      )} */}
 
-      {currentUser.role === 'FACULTY' && (
+      {(currentUser.role === 'FACULTY' || currentUser.role === 'ADMIN') && (
         <>
           <h5>
             New Course
@@ -135,11 +149,11 @@ export default function Dashboard({
           />
         </>
       )}
-      {currentUser.role === 'STUDENT' && (
+      {/* {currentUser.role === 'STUDENT' && (
         <h2 id="wd-dashboard-published">
           {showAllCourses ? 'All Courses' : 'My Enrollments'}
         </h2>
-      )}
+      )} */}
       <hr />
 
       <div id="wd-dashboard-courses" className="row">
@@ -163,6 +177,19 @@ export default function Dashboard({
                   />
                   <div className="card-body">
                     <h5 className="wd-dashboard-course-title card-title">
+                      {enrolling && (
+                        <button
+                          className={`btn ${
+                            course.enrolled ? 'btn-danger' : 'btn-success'
+                          } float-end`}
+                          onClick={(event) => {
+                            event.preventDefault();
+                            updateEnrollment(course._id, !course.enrolled);
+                          }}
+                        >
+                          {course.enrolled ? 'Unenroll' : 'Enroll'}
+                        </button>
+                      )}
                       {course.name}
                     </h5>
                     <p
@@ -173,7 +200,7 @@ export default function Dashboard({
                     </p>
                     <button className="btn btn-primary">Go</button>
 
-                    {currentUser.role === 'STUDENT' && (
+                    {/* {currentUser.role === 'STUDENT' && (
                       <button
                         className={`btn ${
                           enrollments.some(
@@ -197,7 +224,7 @@ export default function Dashboard({
                           ? 'Unenroll'
                           : 'Enroll'}
                       </button>
-                    )}
+                    )} */}
 
                     {currentUser.role === 'FACULTY' && (
                       <>

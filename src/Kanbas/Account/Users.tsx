@@ -2,16 +2,19 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import PeopleTable from '../Courses/People/Table';
 import * as client from './client';
+import * as courseClient from '../Courses/client';
 import { FaPlus } from 'react-icons/fa';
 export default function Users() {
   const [users, setUsers] = useState<any[]>([]);
   const [role, setRole] = useState('');
   const [name, setName] = useState('');
 
-  const { uid } = useParams();
+  const { uid, cid } = useParams();
   const fetchUsers = async () => {
     const users = await client.findAllUsers();
     setUsers(users);
+    // const users = await courseClient.findUsersForCourse(cid as string);
+    // setUsers(users);
   };
   useEffect(() => {
     fetchUsers();

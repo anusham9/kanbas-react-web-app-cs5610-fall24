@@ -1,11 +1,13 @@
 import { FaUserCircle } from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
 // import * as db from '../../Database';
+import * as courseClient from '../client';
 import PeopleDetails from './Details';
 
 export default function PeopleTable({ users = [] }: { users?: any[] }) {
   // const { cid } = useParams();
   // const { users, enrollments } = db;
+
   return (
     <div id="wd-people-table">
       <PeopleDetails />
