@@ -10,13 +10,15 @@ import { deleteAssignment, setAssignments } from './reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteAssignmentModal from './DeleteAssignmentModal';
 import * as coursesClient from '../client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as assignmentsClient from './client';
 
 export default function Assignments() {
   const { cid } = useParams();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const [selectedAssignment, setSelectedAssignment] = useState('');
+
   const dispatch = useDispatch();
 
   const fetchAssignments = async () => {
@@ -122,10 +124,11 @@ export default function Assignments() {
                         className="text-danger me-2 mb-1"
                         data-bs-toggle="modal"
                         data-bs-target="#deleteAssignmentModal"
+                        onClick={() => setSelectedAssignment(assignment._id)}
                       />
                       <DeleteAssignmentModal
                         dialogTitle="Are you sure you want to delete this?"
-                        assignmentId={assignment._id}
+                        assignmentId={selectedAssignment}
                         deleteAssignment={removeAssignment}
                       />
                     </>

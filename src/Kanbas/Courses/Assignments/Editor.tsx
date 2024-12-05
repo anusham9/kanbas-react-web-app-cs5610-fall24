@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { Link, useNavigate } from 'react-router-dom';
-import { addAssignment, updateAssignment } from './reducer';
+import { addAssignment, setAssignments, updateAssignment } from './reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import * as assignmentsClient from './client';
 import * as coursesClient from '../client';
@@ -17,8 +17,8 @@ export default function AssignmentEditor() {
   ).filter((a: any) => a.course == cid);
 
   const course = cid;
-  const existingAssignment = assignments.find(
-    (assignment: any) => assignment._id === aid
+  const [existingAssignment, setExistingAssignment] = useState(
+    assignments.find((assignment: any) => assignment._id === aid)
   );
 
   const [title, setTitle] = useState(
@@ -31,20 +31,35 @@ export default function AssignmentEditor() {
     existingAssignment ? existingAssignment.points : 100
   );
 
+  const [group, setGroup] = useState(
+    existingAssignment ? existingAssignment.group : 'ASSIGNMENTS'
+  );
+
+  const [submissionType, setSubmissionType] = useState(
+    existingAssignment ? existingAssignment.submissionType : 'Online'
+  );
   const [dueDate, setDueDate] = useState(
-    existingAssignment ? existingAssignment.dueDate : ''
+    existingAssignment && existingAssignment.dueDate
+      ? new Date(existingAssignment.dueDate).toISOString().split('T')[0]
+      : ''
   );
   const [availableDate, setAvailableDate] = useState(
-    existingAssignment ? existingAssignment.availableDate : ''
+    existingAssignment && existingAssignment.availableDate
+      ? new Date(existingAssignment.availableDate).toISOString().split('T')[0]
+      : ''
   );
   const [until, setUntil] = useState(
-    existingAssignment ? existingAssignment.until : ''
+    existingAssignment && existingAssignment.until
+      ? new Date(existingAssignment.until).toISOString().split('T')[0]
+      : ''
   );
   const handleSave = async () => {
     const assignmentData = {
       title,
       description,
       points,
+      group,
+      submissionType,
       dueDate,
       availableDate,
       until,
@@ -65,7 +80,13 @@ export default function AssignmentEditor() {
       await createAssignment();
     } else {
       await assignmentsClient.updateAssignment(assignmentData);
+
       dispatch(updateAssignment(assignmentData));
+      const updatedAssignments = assignments.map((a: any) =>
+        a._id === assignmentData._id ? assignmentData : a
+      );
+      console.log('updatedassignments', updatedAssignments);
+      setAssignments(updatedAssignments);
     }
 
     navigate(`/Kanbas/Courses/${cid}/Assignments`);
@@ -124,7 +145,8 @@ export default function AssignmentEditor() {
           <select
             id="wd-assignment-group"
             className="form-select"
-            value={'ASSIGNMENTS'}
+            value={group}
+            onChange={(e) => setGroup(e.target.value)}
           >
             <option value="ASSIGNMENTS">ASSIGNMENTS</option>
             <option value="QUIZZES">QUIZZES</option>
@@ -153,8 +175,14 @@ export default function AssignmentEditor() {
           </label>
           <div className="card">
             <div className="card-body">
-              <select className="form-control" id="wd-submission-type">
+              <select
+                className="form-control"
+                id="wd-submission-type"
+                value={submissionType}
+                onChange={(e) => setSubmissionType(e.target.value)}
+              >
                 <option value="Online">Online</option>
+                <option value="In Person">In Person</option>
               </select>
             </div>
 
